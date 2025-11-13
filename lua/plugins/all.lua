@@ -1,0 +1,598 @@
+-- since this is just an example spec, don't actually load anything here and return an empty spec
+-- stylua: ignore
+if false then return {} end
+-- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
+--
+-- In your plugin files, you can:
+-- * add extra plugins
+-- * disable/enabled LazyVim plugins
+-- * override the configuration of LazyVim plugins
+return {
+  -- add gruvbox
+  -- {
+  --   "ellisonleao/gruvbox.nvim",
+  --   config = function()
+  --     require("gruvbox").setup({
+  --       contrast = "hard",
+  --       italic = {
+  --         strings = true,
+  --         emphasis = true,
+  --         comments = true,
+  --         operators = false,
+  --         folds = true,
+  --       },
+  --       terminal_colors = true,
+  --       overrides = {
+  --         Normal = { bg = "#191F20" },
+  --       },
+  --     })
+  --   end,
+  -- },
+  {
+    "akinsho/bufferline.nvim",
+    enabled = false,
+  },
+  {
+    "nvim-lspconfig",
+    opts = {
+      inlay_hints = { enabled = false },
+    },
+  },
+  -- {
+  --   "rose-pine/neovim",
+  --   name = "rose-pine",
+  --   config = function()
+  --     require("rose-pine").setup({
+  --       variant = "auto", -- auto, main, moon, or dawn
+  --       dark_variant = "main", -- main, moon, or dawn
+  --       dim_inactive_windows = false,
+  --       extend_background_behind_borders = true,
+  --
+  --       enable = {
+  --         terminal = true,
+  --         legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+  --         migrations = true, -- Handle deprecated options automatically
+  --       },
+  --
+  --       styles = {
+  --         bold = false,
+  --         italic = true,
+  --         transparency = true,
+  --       },
+  --
+  --       groups = {
+  --         border = "muted",
+  --         link = "iris",
+  --         panel = "surface",
+  --
+  --         error = "love",
+  --         hint = "iris",
+  --         info = "foam",
+  --         note = "pine",
+  --         todo = "rose",
+  --         warn = "gold",
+  --
+  --         git_add = "foam",
+  --         git_change = "rose",
+  --         git_delete = "love",
+  --         git_dirty = "rose",
+  --         git_ignore = "muted",
+  --         git_merge = "iris",
+  --         git_rename = "pine",
+  --         git_stage = "iris",
+  --         git_text = "rose",
+  --         git_untracked = "subtle",
+  --
+  --         h1 = "iris",
+  --         h2 = "foam",
+  --         h3 = "rose",
+  --         h4 = "gold",
+  --         h5 = "pine",
+  --         h6 = "foam",
+  --       },
+  --
+  --       palette = {
+  --         -- Override the builtin palette per variant
+  --         -- moon = {
+  --         --     base = '#18191a',
+  --         --     overlay = '#363738',
+  --         -- },
+  --       },
+  --
+  --       -- NOTE: Highlight groups are extended (merged) by default. Disable this
+  --       -- per group via `inherit = false`
+  --       highlight_groups = {
+  --         -- Comment = { fg = "foam" },
+  --         -- StatusLine = { fg = "love", bg = "love", blend = 15 },
+  --         -- VertSplit = { fg = "muted", bg = "muted" },
+  --         -- Visual = { fg = "base", bg = "text", inherit = false },
+  --       },
+  --
+  --       before_highlight = function(
+  --         group,
+  --         highlight,
+  --         palette
+  --       )
+  --         -- Disable all undercurls
+  --         -- if highlight.undercurl then
+  --         --     highlight.undercurl = false
+  --         -- end
+  --         --
+  --         -- Change palette colour
+  --         -- if highlight.fg == palette.pine then
+  --         --     highlight.fg = palette.foam
+  --         -- end
+  --       end,
+  --     })
+  --
+  --     vim.cmd("colorscheme rose-pine")
+  --     -- vim.cmd("colorscheme rose-pine-main")
+  --     -- vim.cmd("colorscheme rose-pine-moon")
+  --     -- vim.cmd("colorscheme rose-pine-dawn")
+  --   end,
+  -- },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        background = { -- :h background
+          light = "latte",
+          dark = "mocha",
+        },
+        transparent_background = true, -- disables setting the background color.
+        float = {
+          transparent = false, -- enable transparent floating windows
+          solid = false, -- use solid styling for floating windows, see |winborder|
+        },
+        show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+        term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+        dim_inactive = {
+          enabled = false, -- dims the background color of inactive window
+          shade = "dark",
+          percentage = 0.15, -- percentage of the shade to apply to the inactive window
+        },
+        no_italic = false, -- Force no italic
+        no_bold = false, -- Force no bold
+        no_underline = false, -- Force no underline
+        styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+          comments = { "italic" }, -- Change the style of comments
+          conditionals = { "italic" },
+          loops = {},
+          functions = {},
+          keywords = {},
+          strings = {},
+          variables = {},
+          numbers = {},
+          booleans = {},
+          properties = {},
+          types = {},
+          operators = {},
+          -- miscs = {}, -- Uncomment to turn off hard-coded styles
+        },
+        lsp_styles = { -- Handles the style of specific lsp hl groups (see `:h lsp-highlight`).
+          virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+            ok = { "italic" },
+          },
+          underlines = {
+            errors = { "underline" },
+            hints = { "underline" },
+            warnings = { "underline" },
+            information = { "underline" },
+            ok = { "underline" },
+          },
+          inlay_hints = {
+            background = true,
+          },
+        },
+        color_overrides = {},
+        custom_highlights = {},
+        default_integrations = true,
+        auto_integrations = false,
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          nvimtree = true,
+          notify = false,
+          mini = {
+            enabled = true,
+            indentscope_color = "",
+          },
+          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+        },
+      })
+
+      -- setup must be called before loading
+      vim.cmd.colorscheme("catppuccin")
+    end,
+  },
+  -- {
+  --   "tokyonight.nvim",
+  --   enabled = true,
+  --   config = function()
+  --     require("tokyonight").setup({
+  --       transparent = true,
+  --     })
+  --   end,
+  -- },
+  -- {
+  --   "rmehri01/onenord.nvim",
+  --   config = function()
+  --     require("onenord").setup({
+  --       theme = nil, -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
+  --       borders = true, -- Split window borders
+  --       fade_nc = false, -- Fade non-current windows, making them more distinguishable
+  --       -- Style that is applied to various groups: see `highlight-args` for options
+  --       styles = {
+  --         comments = "NONE",
+  --         strings = "NONE",
+  --         keywords = "NONE",
+  --         functions = "NONE",
+  --         variables = "NONE",
+  --         diagnostics = "underline",
+  --       },
+  --       disable = {
+  --         background = true, -- Disable setting the background color
+  --         float_background = true, -- Disable setting the background color for floating windows
+  --         cursorline = false, -- Disable the cursorline
+  --         eob_lines = true, -- Hide the end-of-buffer lines
+  --       },
+  --       -- Inverse highlight for different groups
+  --       inverse = {
+  --         match_paren = false,
+  --       },
+  --       custom_highlights = {}, -- Overwrite default highlight groups
+  --       custom_colors = {}, -- Overwrite default colors
+  --     })
+  --     -- vim.cmd("colorscheme onenord")
+  --   end,
+  -- },
+  {
+    "marko-cerovac/material.nvim",
+    config = function()
+      require("material").setup({
+
+        contrast = {
+          terminal = false, -- Enable contrast for the built-in terminal
+          sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+          floating_windows = false, -- Enable contrast for floating windows
+          cursor_line = false, -- Enable darker background for the cursor line
+          lsp_virtual_text = false, -- Enable contrasted background for lsp virtual text
+          non_current_windows = false, -- Enable contrasted background for non-current windows
+          filetypes = {}, -- Specify which filetypes get the contrasted (darker) background
+        },
+
+        styles = { -- Give comments style such as bold, italic, underline etc.
+          comments = { --[[ italic = true ]]
+          },
+          strings = { --[[ bold = true ]]
+          },
+          keywords = { --[[ underline = true ]]
+          },
+          functions = { --[[ bold = true, undercurl = true ]]
+          },
+          variables = {},
+          operators = {},
+          types = {},
+        },
+
+        plugins = { -- Uncomment the plugins that you use to highlight them
+          -- Available plugins:
+          -- "blink",
+          -- "coc",
+          -- "colorful-winsep",
+          -- "dap",
+          -- "dashboard",
+          -- "eyeliner",
+          -- "fidget",
+          -- "flash",
+          -- "gitsigns",
+          -- "harpoon",
+          -- "hop",
+          -- "illuminate",
+          -- "indent-blankline",
+          -- "lspsaga",
+          -- "mini",
+          -- "neo-tree",
+          -- "neogit",
+          -- "neorg",
+          -- "neotest",
+          -- "noice",
+          -- "nvim-cmp",
+          -- "nvim-navic",
+          -- "nvim-notify",
+          -- "nvim-tree",
+          -- "nvim-web-devicons",
+          -- "rainbow-delimiters",
+          -- "sneak",
+          -- "telescope",
+          -- "trouble",
+          -- "which-key",
+        },
+
+        disable = {
+          colored_cursor = false, -- Disable the colored cursor
+          borders = false, -- Disable borders between vertically split windows
+          background = false, -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
+          term_colors = false, -- Prevent the theme from setting terminal colors
+          eob_lines = false, -- Hide the end-of-buffer lines
+        },
+
+        high_visibility = {
+          lighter = false, -- Enable higher contrast text for lighter style
+          darker = false, -- Enable higher contrast text for darker style
+        },
+
+        lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
+
+        async_loading = true, -- Load parts of the theme asynchronously for faster startup (turned on by default)
+
+        custom_colors = nil, -- If you want to override the default colors, set this to a function
+
+        custom_highlights = {}, -- Overwrite highlights with your own
+      })
+    end,
+  },
+  { "RRethy/vim-illuminate", enabled = false },
+  {
+    "numToStr/Navigator.nvim",
+    config = function()
+      require("Navigator").setup({})
+    end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    enabled = false,
+  },
+  { "tpope/vim-vinegar" },
+  { "tpope/vim-fugitive" },
+  {
+    "snacks.nvim",
+    opts = {
+      scroll = { enabled = false },
+      explorer = { enabled = false },
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
+  },
+  {
+    "saghen/blink.cmp",
+    opts = {
+      keymap = {
+        preset = "default",
+        ["<Tab>"] = { "select_next", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
+        ["<C-space>"] = {
+          "show",
+          "show_documentation",
+          "hide_documentation",
+        },
+        ["<C-e>"] = { "hide" },
+        ["<C-f>"] = { "snippet_forward", "fallback" },
+        ["<C-b>"] = { "snippet_backward", "fallback" },
+      },
+    },
+  },
+  {
+    "johnfrankmorgan/whitespace.nvim",
+    config = function()
+      require("whitespace-nvim").setup({
+        highlight = "DiffDelete",
+        ignored_filetypes = {
+          "TelescopePrompt",
+          "Trouble",
+          "help",
+          "dashboard",
+        },
+        ignore_terminal = true,
+        return_cursor = true,
+      })
+      vim.keymap.set(
+        "n",
+        "<Leader>t",
+        require("whitespace-nvim").trim
+      )
+    end,
+  },
+
+  -- change some telescope options and a keymap to browse plugin files
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      -- add a keymap to browse plugin files
+      -- stylua: ignore
+      -- {
+      --   "<leader>fp",
+      --   function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
+      --   desc = "Find Plugin File",
+      -- },
+      {
+        "<leader>lg",
+        function()
+          require("telescope.builtin").live_grep()
+        end,
+        desc = "Live Grep",
+      },
+      {
+        "<C-p>",
+        function()
+          require("telescope.builtin").find_files({
+            opts = { hidden = false },
+          })
+        end,
+        desc = "Find files",
+      },
+    },
+    -- change some options
+    opts = {
+      defaults = {
+        layout_strategy = "horizontal",
+        layout_config = { prompt_position = "top" },
+        sorting_strategy = "ascending",
+        winblend = 0,
+      },
+    },
+  },
+
+  -- add pyright to lspconfig
+  {
+    "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        -- pyright will be automatically installed with mason and loaded with lspconfig
+        pyright = {},
+      },
+    },
+  },
+  -- add tsserver and setup with typescript.nvim instead of lspconfig
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "jose-elias-alvarez/typescript.nvim",
+      init = function()
+        require("lazyvim.util").lsp.on_attach(
+          function(_, buffer)
+          -- stylua: ignore
+          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
+            vim.keymap.set(
+              "n",
+              "<leader>cR",
+              "TypescriptRenameFile",
+              { desc = "Rename File", buffer = buffer }
+            )
+          end
+        )
+      end,
+    },
+    ---@class PluginLspOpts
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        -- tsserver will be automatically installed with mason and loaded with lspconfig
+        tsserver = {},
+      },
+      -- you can do any additional lsp server setup here
+      -- return true if you don't want this server to be setup with lspconfig
+      ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
+      setup = {
+        -- example to setup with typescript.nvim
+        tsserver = function(_, opts)
+          require("typescript").setup({ server = opts })
+          return true
+        end,
+        -- Specify * to use this function as a fallback for any server
+        -- ["*"] = function(server, opts) end,
+      },
+    },
+  },
+
+  -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
+  -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
+  { import = "lazyvim.plugins.extras.lang.typescript" },
+
+  -- add more treesitter parsers
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "html",
+        "javascript",
+        "json",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+      },
+    },
+  },
+
+  -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
+  -- would overwrite `ensure_installed` with the new value.
+  -- If you'd rather extend the default config, use the code below instead:
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      -- add tsx and treesitter
+      vim.list_extend(opts.ensure_installed, {
+        "tsx",
+        "typescript",
+      })
+    end,
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
+
+  -- or you can return new options to override all the defaults
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return {
+        theme = "catppuccin",
+        options = {
+          icons_enabled = true,
+          component_separators = "",
+          section_separators = "",
+          globalstatus = true,
+        },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = { "branch" },
+          lualine_c = { "searchcount" },
+          lualine_x = { "diagnostics" },
+          lualine_y = { "diff" },
+          lualine_z = { "windows" },
+        },
+      }
+    end,
+  },
+
+  -- use mini.starter instead of alpha
+  -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
+
+  -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
+  { import = "lazyvim.plugins.extras.lang.json" },
+
+  -- add any tools you want to have installed below
+  {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "stylua",
+        "shellcheck",
+        "shfmt",
+        "flake8",
+      },
+    },
+  },
+}
