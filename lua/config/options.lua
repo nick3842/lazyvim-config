@@ -5,4 +5,5 @@
 vim.opt.ruler = false
 vim.opt.numberwidth = 2
 vim.opt.relativenumber = false
+vim.opt.number = false
 vim.opt.numberwidth = 2

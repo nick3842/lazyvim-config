@@ -358,6 +358,7 @@ return {
       scroll = { enabled = false },
       explorer = { enabled = false },
       dashboard = { enabled = false },
+      indent = { enabled = false },
     },
   },
   {
@@ -460,6 +461,7 @@ return {
   },
   -- TypeScript support via LazyVim's extras (uses typescript-tools.nvim)
   { import = "lazyvim.plugins.extras.lang.typescript" },
+  { import = "lazyvim.plugins.extras.lang.elixir" },
 
   -- add more treesitter parsers
   {
