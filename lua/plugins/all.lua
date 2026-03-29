@@ -99,6 +99,7 @@ return {
       vim.cmd.colorscheme("catppuccin")
     end,
   },
+  { "folke/noice.nvim", enabled = false },
   { "RRethy/vim-illuminate", enabled = false },
   {
     "numToStr/Navigator.nvim",
@@ -222,6 +223,7 @@ return {
   -- TypeScript support via LazyVim's extras (uses typescript-tools.nvim)
   { import = "lazyvim.plugins.extras.lang.typescript" },
   { import = "lazyvim.plugins.extras.lang.elixir" },
+  { import = "lazyvim.plugins.extras.formatting.prettier" },
 
   -- add more treesitter parsers
   {
