@@ -216,14 +216,14 @@ return {
       ---@type lspconfig.options
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
+        ty = {},
       },
     },
   },
   -- TypeScript support via LazyVim's extras (uses typescript-tools.nvim)
   { import = "lazyvim.plugins.extras.lang.typescript" },
   { import = "lazyvim.plugins.extras.lang.elixir" },
-  { import = "lazyvim.plugins.extras.formatting.prettier" },
+  -- { import = "lazyvim.plugins.extras.formatting.prettier" },
 
   -- add more treesitter parsers
   {
