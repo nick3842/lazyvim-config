@@ -104,7 +104,12 @@ return {
   {
     "numToStr/Navigator.nvim",
     config = function()
-      require("Navigator").setup({})
+      -- Straight in a Tern pane (no tmux), hand edge moves to Tern; otherwise auto-detect tmux/WezTerm.
+      local mux = "auto"
+      if not vim.env.TMUX and vim.env.TERN_PANE then
+        mux = require("navigator_tern"):new()
+      end
+      require("Navigator").setup({ mux = mux })
     end,
   },
   {
@@ -223,6 +228,20 @@ return {
   -- TypeScript support via LazyVim's extras (uses typescript-tools.nvim)
   { import = "lazyvim.plugins.extras.lang.typescript" },
   { import = "lazyvim.plugins.extras.lang.elixir" },
+  { import = "lazyvim.plugins.extras.lang.clangd" },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        objc = { "clang-format" },
+        objcpp = { "clang-format" },
+        cuda = { "clang-format" },
+        proto = { "clang-format" },
+      },
+    },
+  },
   -- { import = "lazyvim.plugins.extras.formatting.prettier" },
 
   -- add more treesitter parsers
@@ -314,6 +333,7 @@ return {
         "shellcheck",
         "shfmt",
         "flake8",
+        "clang-format",
       },
     },
   },
